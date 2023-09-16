@@ -114,6 +114,39 @@ class MailChimpDriver implements Driver
         return $response;
     }
 
+    public function getTags(string $email, string $listName = '')
+    {
+        $list = $this->lists->findByName($listName);
+
+        return $this->mailChimp->get("lists/{$list->getId()}/members/{$this->getSubscriberHash($email)}/tags");
+    }
+
+    public function addTags(array $tags, string $email, string $listName = '')
+    {
+        $list = $this->lists->findByName($listName);
+
+        $payload = collect($tags)->map(function ($tag) {
+            return ['name' => $tag, 'status' => 'active'];
+        })->toArray();
+
+        return $this->mailChimp->post("lists/{$list->getId()}/members/{$this->getSubscriberHash($email)}/tags", [
+            'tags' => $payload,
+        ]);
+    }
+
+    public function removeTags(array $tags, string $email, string $listName = '')
+    {
+        $list = $this->lists->findByName($listName);
+
+        $payload = collect($tags)->map(function ($tag) {
+            return ['name' => $tag, 'status' => 'inactive'];
+        })->toArray();
+
+        return $this->mailChimp->post("lists/{$list->getId()}/members/{$this->getSubscriberHash($email)}/tags", [
+            'tags' => $payload,
+        ]);
+    }
+    
     public function hasMember(string $email, string $listName = ''): bool
     {
         $response = $this->getMember($email, $listName);
