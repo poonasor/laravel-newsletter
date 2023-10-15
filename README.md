@@ -17,7 +17,19 @@ then just update the packages
 ```bash
 composer update
 ```
+then these tags will be working for MailChimp
+```php
+// Get the tags for a member in a given list
+Newsletter::getTags('lord.vetinari@discworld.com');
 
+// Add tags for a member in a given list, any new tags will be created
+Newsletter::addTags(['tag-1', 'tag-2'], 'lord.vetinari@discworld.com');
+
+// Remove tags for a member in a given list
+Newsletter::removeTags(['tag-1', 'tag-2'], 'lord.vetinari@discworld.com');
+```
+
+# Manage newsletters in Laravel (Original readme below)
 
 [![Latest Version](https://img.shields.io/github/release/spatie/laravel-newsletter.svg?style=flat-square)](https://github.com/spatie/laravel-newsletter/releases)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
