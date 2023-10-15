@@ -1,4 +1,24 @@
-# Manage newsletters in Laravel
+# Manage newsletters in Laravel (MailChimp Tags Fix)
+
+## How to get it work
+in your composor.json add the following:
+```json
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/poonasor/laravel-newsletter.git"
+        }
+    ],
+    "require": {
+        "spatie/laravel-newsletter": "dev-tags",
+    },
+```
+then just update the packages
+```bash
+composer update
+```
+
+
 [![Latest Version](https://img.shields.io/github/release/spatie/laravel-newsletter.svg?style=flat-square)](https://github.com/spatie/laravel-newsletter/releases)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-newsletter/run-tests?label=tests)
